@@ -7,7 +7,7 @@ const PayBill = () => {
   const navigate = useNavigate();
   const { id, providerId } = useParams();
   
-  const [paymentMethod, setPaymentMethod] = useState('');
+  const [paymentMethod, setPaymentMethod] = useState('UPI');
 
   const handlePay = (e) => {
     e.preventDefault();
@@ -104,7 +104,11 @@ const PayBill = () => {
                   <label className="block text-sm font-bold text-slate-800 mb-2">
                     Payment Mode
                   </label>
-                  <select className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500 text-slate-700 font-medium appearance-none bg-white shadow-sm">
+                  <select 
+                    value={paymentMethod}
+                    onChange={(e) => setPaymentMethod(e.target.value)}
+                    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500 text-slate-700 font-medium appearance-none bg-white shadow-sm"
+                  >
                     <option>UPI</option>
                     <option>Net Banking</option>
                     <option>Debit/Credit Card</option>

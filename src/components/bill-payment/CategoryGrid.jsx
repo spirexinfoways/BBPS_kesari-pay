@@ -40,12 +40,24 @@ const categories = [
   { id: 28, title: 'Water', icon: Droplet },
 ];
 
-const CategoryGrid = () => {
+const CategoryGrid = ({ searchQuery = '' }) => {
+  const filteredCategories = categories.filter(cat =>
+    cat.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-      {categories.map((cat) => (
-        <CategoryCard key={cat.id} title={cat.title} icon={cat.icon} />
-      ))}
+    <div>
+      {filteredCategories.length > 0 ? (
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          {filteredCategories.map((cat) => (
+            <CategoryCard key={cat.id} title={cat.title} icon={cat.icon} />
+          ))}
+        </div>
+      ) : (
+        <div className="text-center text-gray-500 py-10">
+          No categories found matching "{searchQuery}"
+        </div>
+      )}
     </div>
   );
 };

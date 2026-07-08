@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/layout/Header';
 import SearchBar from '../components/bill-payment/SearchBar';
 import CategoryGrid from '../components/bill-payment/CategoryGrid';
 import bharatConnectLogo from '../assets/bharat-connect-logo.jpeg';
 
 const BillPayment = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+
   return (
     <div className="min-h-screen bg-[#f8fafc]">
       <Header />
@@ -26,9 +28,9 @@ const BillPayment = () => {
             </div>
           </div>
 
-          <SearchBar />
+          <SearchBar searchQuery={searchQuery} onSearchChange={setSearchQuery} />
           
-          <CategoryGrid />
+          <CategoryGrid searchQuery={searchQuery} />
           
         </div>
       </main>
