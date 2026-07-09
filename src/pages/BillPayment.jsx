@@ -11,14 +11,14 @@ const BillPayment = () => {
     <div className="min-h-screen bg-[#f8fafc]">
       <Header />
       
-      <main className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 relative">
+      <main className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 sm:p-6 md:p-8 relative">
           
           {/* Header Section */}
-          <div className="flex flex-col md:flex-row md:items-start justify-between mb-8">
+          <div className="flex flex-col md:flex-row md:items-start justify-between mb-6 sm:mb-8">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900 mb-2">Select Bill Category</h1>
-              <p className="text-gray-500 text-sm">
+              <h1 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Select Bill Category</h1>
+              <p className="text-gray-500 text-xs sm:text-sm">
                 Choose a category to pay your utility, telecom, or government bills through Bharat Connect.
               </p>
             </div>
