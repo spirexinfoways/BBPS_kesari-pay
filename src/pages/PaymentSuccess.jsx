@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Header from '../components/layout/Header';
 import bAssuredLogo from '../assets/b-assured-standard.png';
 import mogoSound from '../assets/bharat-connect-mogo.mp3';
+import transaction from '../data/transaction';
 
 const ReceiptRow = ({ label, value, boldValue = false, valueColor = "text-slate-500", labelColor = "text-slate-800" }) => (
   <div className="grid grid-cols-2 gap-4 py-3 border-b border-dashed border-gray-200 last:border-0">
@@ -13,6 +14,7 @@ const ReceiptRow = ({ label, value, boldValue = false, valueColor = "text-slate-
 
 const PaymentSuccess = () => {
   const navigate = useNavigate();
+  const { id, providerId } = useParams();
 
   // Play the Bharat Connect sonic identity once the success screen appears.
   useEffect(() => {
@@ -55,38 +57,35 @@ const PaymentSuccess = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
-          {/* Left Column: Transaction Receipt */}
+          {/* Left Column: Payment Summary */}
           <div className="lg:col-span-7">
             <div className="bg-white border border-gray-200 rounded-2xl p-6 md:p-8 shadow-sm relative overflow-hidden">
               <h3 className="text-sm font-bold text-orange-500 tracking-wider uppercase mb-6">
-                TRANSACTION RECEIPT
+                PAYMENT SUMMARY
               </h3>
-              
+
               <div className="flex flex-col">
-                <ReceiptRow label="B-Connect Txn ID" value="CC017LESTEQDOASZIGTM" boldValue={true} valueColor="text-slate-800" />
-                <ReceiptRow label="Biller ID" value="OTME00005XXZ43" />
-                <ReceiptRow label="Biller Name" value="OTME" />
-                <ReceiptRow label="Customer Name" value="B-connect" />
-                <ReceiptRow label="Customer Mobile" value="9898990084" />
-                <ReceiptRow label="Bill Date" value="2015-06-14" />
-                <ReceiptRow label="Bill Period" value="june" />
-                <ReceiptRow label="Bill Number" value="12303" />
-                <ReceiptRow label="Due Date" value="2015-06-20" />
-                <ReceiptRow label="Bill Amount" value="₹1000.00" />
-                <ReceiptRow label="Customer Convenience Fee (CCF)" value="₹10.00" />
-                <ReceiptRow label="CCF Status" value="Submitted" valueColor="text-[#16a34a]" boldValue={true} />
-                <ReceiptRow label="Total Amount Paid" value="₹1010.00" valueColor="text-orange-500" boldValue={true} />
-                <ReceiptRow label="Transaction Date/Time" value="2026-07-07 12:32:18" />
-                <ReceiptRow label="Initiating Channel" value="AGT" />
-                <ReceiptRow label="Payment Mode" value="UPI" />
-                <ReceiptRow label="Transaction Status" value="Successful" labelColor="text-[#16a34a]" valueColor="text-[#16a34a]" boldValue={true} />
-                <ReceiptRow label="Approval Number" value="91876089" />
+                <ReceiptRow label="B-Connect Txn ID" value={transaction.txnId} boldValue={true} valueColor="text-slate-800" />
+                <ReceiptRow label="Biller Name" value={transaction.billerName} />
+                <ReceiptRow label="Customer Mobile" value={transaction.customerMobile} />
+                <ReceiptRow label="Bill Amount" value={transaction.billAmount} />
+                <ReceiptRow label="Customer Convenience Fee (CCF)" value={transaction.ccf} valueColor="text-orange-500" />
+                <ReceiptRow label="CCF Status" value={transaction.ccfStatus} valueColor="text-[#16a34a]" boldValue={true} />
+                <ReceiptRow label="Total Amount Paid" value={transaction.totalPaid} valueColor="text-orange-500" boldValue={true} />
+                <ReceiptRow label="Transaction Date/Time" value={transaction.txnDateTime} />
+                <ReceiptRow label="Transaction Status" value={transaction.txnStatus} labelColor="text-[#16a34a]" valueColor="text-[#16a34a]" boldValue={true} />
               </div>
 
-              <div className="mt-8">
-                <button 
+              <div className="mt-8 flex flex-col sm:flex-row gap-3">
+                <button
+                  onClick={() => navigate(`/category/${id}/provider/${providerId}/receipt`)}
+                  className="flex-1 bg-[#f26e24] hover:bg-[#e05d15] text-white font-bold py-3.5 px-4 rounded-xl transition-colors shadow-md text-center"
+                >
+                  View Payment Receipt
+                </button>
+                <button
                   onClick={() => navigate('/')}
-                  className="w-full bg-[#111827] hover:bg-black text-white font-bold py-3.5 px-4 rounded-xl transition-colors shadow-md text-center"
+                  className="flex-1 bg-[#111827] hover:bg-black text-white font-bold py-3.5 px-4 rounded-xl transition-colors shadow-md text-center"
                 >
                   Pay Another Bill
                 </button>
@@ -108,7 +107,7 @@ const PaymentSuccess = () => {
               
               <div className="bg-[#0f172a] rounded-xl p-5 border border-slate-700/50">
                 <p className="text-slate-300 text-[13px] font-mono leading-relaxed">
-                  Thank you for payment of ₹1010.00 against OTME, Consumer no 9898990084, B-Connect Txn id CC017LESTEQD on 2026-07-07 12:32:18 vide UPI.
+                  Thank you for payment of {transaction.totalPaid} against {transaction.billerName}, Consumer no {transaction.customerMobile}, B-Connect Txn id {transaction.txnId.slice(0, 12)} on {transaction.txnDateTime} vide {transaction.paymentMode}.
                 </p>
               </div>
             </div>

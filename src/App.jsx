@@ -5,6 +5,7 @@ import CategoryDetails from './pages/CategoryDetails';
 import FetchBill from './pages/FetchBill';
 import PayBill from './pages/PayBill';
 import PaymentSuccess from './pages/PaymentSuccess';
+import PaymentReceipt from './pages/PaymentReceipt';
 import SearchTransaction from './pages/SearchTransaction';
 import RaiseComplaint from './pages/RaiseComplaint';
 import TrackComplaint from './pages/TrackComplaint';
@@ -18,6 +19,7 @@ function App() {
         <Route path="/category/:id/provider/:providerId/fetch" element={<FetchBill />} />
         <Route path="/category/:id/provider/:providerId/pay" element={<PayBill />} />
         <Route path="/category/:id/provider/:providerId/success" element={<PaymentSuccess />} />
+        <Route path="/category/:id/provider/:providerId/receipt" element={<PaymentReceipt />} />
         <Route path="/transactions/search" element={<SearchTransaction />} />
         <Route path="/tickets/raise" element={<RaiseComplaint />} />
         <Route path="/tickets/track" element={<TrackComplaint />} />
