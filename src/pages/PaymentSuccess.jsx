@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/layout/Header';
+import bAssuredLogo from '../assets/b-assured-standard.png';
+import mogoSound from '../assets/bharat-connect-mogo.mp3';
 
 const ReceiptRow = ({ label, value, boldValue = false, valueColor = "text-slate-500", labelColor = "text-slate-800" }) => (
   <div className="grid grid-cols-2 gap-4 py-3 border-b border-dashed border-gray-200 last:border-0">
@@ -11,6 +13,18 @@ const ReceiptRow = ({ label, value, boldValue = false, valueColor = "text-slate-
 
 const PaymentSuccess = () => {
   const navigate = useNavigate();
+
+  // Play the Bharat Connect sonic identity once the success screen appears.
+  useEffect(() => {
+    const audio = new Audio(mogoSound);
+    // Browsers reject autoplay without a prior user gesture on the page; ignore it.
+    audio.play().catch(() => {});
+
+    return () => {
+      audio.pause();
+      audio.currentTime = 0;
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#f8fafc]">
@@ -32,12 +46,11 @@ const PaymentSuccess = () => {
             </div>
           </div>
           
-          <div className="flex flex-col items-center justify-center mt-4 md:mt-0 relative w-16 h-16 rounded-full border-[3px] border-blue-700 border-r-orange-500 shadow-sm shrink-0">
-            <div className="text-blue-700 font-bold text-2xl leading-none italic">
-              B
-            </div>
-            <span className="text-[9px] font-bold text-orange-600 tracking-wider absolute -bottom-3 bg-white px-1">ASSURED</span>
-          </div>
+          <img
+            src={bAssuredLogo}
+            alt="Bharat Connect Assured"
+            className="w-20 h-20 object-contain mt-4 md:mt-0 shrink-0"
+          />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
