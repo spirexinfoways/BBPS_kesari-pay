@@ -2,7 +2,6 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/layout/Header';
 import bAssuredLogo from '../assets/b-assured-standard.png';
-import bharatConnectLogo from '../assets/bharat-connect-logo.jpeg';
 import transaction from '../data/transaction';
 
 const ReceiptRow = ({ label, value, boldValue = false, valueColor = "text-slate-500", labelColor = "text-slate-800" }) => (
@@ -21,8 +20,8 @@ const PaymentReceipt = () => {
 
       <main className="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
 
-        {/* Top Bar: Back Button and Bharat Connect */}
-        <div className="flex justify-between items-center mb-6 print:hidden">
+        {/* Top Bar: Back Button */}
+        <div className="flex items-center mb-6 print:hidden">
           <button
             onClick={() => navigate(-1)}
             className="group flex items-center text-sm font-semibold text-slate-500 hover:text-slate-800 transition-colors bg-white hover:bg-slate-50 px-4 py-2 rounded-xl shadow-sm border border-gray-100"
@@ -32,8 +31,6 @@ const PaymentReceipt = () => {
             </svg>
             Back to Payment Status
           </button>
-
-          <img src={bharatConnectLogo} alt="Bharat Connect" className="h-12 object-contain hidden md:block" />
         </div>
 
         <div className="bg-white border border-gray-200 rounded-2xl p-6 md:p-8 shadow-sm">
