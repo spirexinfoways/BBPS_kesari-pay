@@ -49,7 +49,7 @@ const PaymentSuccess = () => {
           <img
             src={bAssuredLogo}
             alt="Bharat Connect Assured"
-            className="w-20 h-20 object-contain mt-4 md:mt-0 shrink-0"
+            className="w-28 h-28 object-contain mt-4 md:mt-0 shrink-0"
           />
         </div>
 
