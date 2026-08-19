@@ -45,10 +45,10 @@ const Header = () => {
 
           {/* Navigation Section */}
           <nav className="hidden md:flex space-x-8 h-full items-center">
-            <div className="flex flex-col items-center justify-center h-full pt-1 cursor-default">
+            <a href="https://bbps.kesaripay.com" className="flex flex-col items-center justify-center h-full pt-1 cursor-pointer hover:opacity-80 transition-opacity">
               <img src={bMnemonicLogo} alt="Bill Payment Icon" className="h-7 w-7 mb-1 object-contain" />
               <span className="text-xs font-bold text-gray-900">Bill Payment</span>
-            </div>
+            </a>
             
             <Link to="/" className={`font-semibold text-sm flex items-center h-full border-b-2 ${isHomeActive ? 'border-orange-500 text-slate-900' : 'border-transparent text-gray-600 hover:text-gray-900'}`}>
               Home
@@ -176,7 +176,7 @@ const Header = () => {
           </div>
         </div>
 
-        <div className="p-6 border-t border-gray-100 bg-gray-50 mt-auto">
+        <a href="https://bbps.kesaripay.com" className="block p-6 border-t border-gray-100 bg-gray-50 mt-auto hover:bg-gray-100 transition-colors cursor-pointer">
           <div className="flex items-center space-x-3">
              <img src={bMnemonicLogo} alt="Bill Payment Icon" className="h-8 w-8 object-contain" />
              <div>
@@ -184,7 +184,7 @@ const Header = () => {
                 <p className="text-xs text-slate-500 font-medium">Bill Payment System</p>
              </div>
           </div>
-        </div>
+        </a>
       </div>
     </>
   );
